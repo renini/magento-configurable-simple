@@ -226,7 +226,7 @@ Product.Config.prototype.updateProductName = function(productId) {
     if (productId && this.config.childProducts[productId].productName) {
         productName = this.config.childProducts[productId].productName;
     }
-    $$('#product_addtocart_form div.product-name h1').each(function(el) {
+    $$('#product_addtocart_form div.product-name span').each(function(el) {
         el.innerHTML = productName;
     });
 };
