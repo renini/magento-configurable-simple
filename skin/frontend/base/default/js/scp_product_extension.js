@@ -318,18 +318,24 @@ Product.Config.prototype.showFullImageDiv = function(productId, parentId) {
                 //Product.Zoom needs the *image* (not just the html source from the ajax)
                 //to have loaded before it works, hence image object and onload handler
                 if ($('image-main')){
-                    var imgObj = new Image();
-                    imgObj.onload = function() {product_zoom = new Product.Zoom('image', 'track', 'handle', 'zoom_in', 'zoom_out', 'track_hint'); };
-                    imgObj.src = $('image-main').src;
+                    //var imgObj = new Image();
+                    //imgObj.onload = function() {product_zoom = new Product.Zoom('image', 'track', 'handle', 'zoom_in', 'zoom_out', 'track_hint'); };
+                    //imgObj.src = $('image-main').src;
+                    
+                    // jquery.elevateZoom.js is used since 1.9.1 see: http://blog.belvg.com/jquery-zoom-and-slide-plugins-in-magento-1-9.html
+                    // now you can just use the ProductMediaManager.init() function to change the image
+                    ProductMediaManager.init();
                 } else {
                     destElement.innerHTML = defaultZoomer;
-                    product_zoom = new Product.Zoom('image', 'track', 'handle', 'zoom_in', 'zoom_out', 'track_hint')
+                    //product_zoom = new Product.Zoom('image', 'track', 'handle', 'zoom_in', 'zoom_out', 'track_hint')
+                    ProductMediaManager.init();
                 }
           }
         });
     } else {
         destElement.innerHTML = defaultZoomer;
-        product_zoom = new Product.Zoom('image', 'track', 'handle', 'zoom_in', 'zoom_out', 'track_hint');
+        //product_zoom = new Product.Zoom('image', 'track', 'handle', 'zoom_in', 'zoom_out', 'track_hint');
+        ProductMediaManager.init();
     }
 };
 
